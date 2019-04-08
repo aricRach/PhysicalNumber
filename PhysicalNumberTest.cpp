@@ -10,8 +10,7 @@
 //using std::cout, std::endl, std::istringstream;
 using namespace std;
 #include "PhysicalNumber.h"
-using ariel::PhysicalNumber;
-using ariel::Unit;
+using ariel::PhysicalNumber,ariel::Unit;
 #include "badkan.hpp"
 
 int main() {
