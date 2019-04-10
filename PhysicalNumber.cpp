@@ -259,15 +259,25 @@ namespace ariel {
       // check if the input is valid
       // if valid put the value on a 
       //else error
-      
-       char tmp; // Recieve "["
-       string s = ""; // Recieve the rest of the input after the number (Unit"]")
-       is >> a.value >> tmp >> s;
-       s.resize(s.length() - 1); 
-       Unit newType = StringToType(s); // Convert the string into type
-       a.type = newType;
-   
-        return is;
+      double tempVal;
+      char tmp; // Recieve "["
+      string s = ""; // Recieve the rest of the input after the number (Unit"]")
+      is >> tempVal >> tmp >> s;
+      s.resize(s.length() - 1); 
+      try{
+         
+         Unit newType = StringToType(s); // Convert the string into type
+          a.type = newType;
+
+         a.value=tempVal;
+
+      }
+      catch(const std::exception& e){
+         
+         is.setstate(ios::failbit);
+      }
+     
+      // return is;
    }
 
    std::string getType(int typeNum) { // Recieve type as a number and return it as a string
