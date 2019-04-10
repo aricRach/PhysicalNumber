@@ -267,17 +267,17 @@ namespace ariel {
       try{
          
          Unit newType = StringToType(s); // Convert the string into type
+          
           a.type = newType;
-
          a.value=tempVal;
 
       }
-      catch(const std::exception& e){
+      catch(const exception& e){
          
          is.setstate(ios::failbit);
       }
      
-      // return is;
+       return is;
    }
 
    std::string getType(int typeNum) { // Recieve type as a number and return it as a string
