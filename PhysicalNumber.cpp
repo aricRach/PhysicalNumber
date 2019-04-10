@@ -255,13 +255,20 @@ namespace ariel {
 
    istream & operator>>(istream & is, PhysicalNumber & a) { // Cin
       
+      
       char tmp; // Recieve "["
       string s = ""; // Recieve the rest of the input after the number (Unit"]")
       is >> a.value >> tmp >> s;
       s.resize(s.length() - 1); 
       Unit newType = StringToType(s); // Convert the string into type
       a.type = newType;
-
+      //aric
+      int valid=returnUnit(a);
+      if(valid==-1){
+         
+         throw("invalid");
+      }
+      
       return is;
    }
 
