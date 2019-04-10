@@ -65,7 +65,7 @@ namespace ariel {
       else if (str == "g")
          return Unit::G;
       else {
-        // throw("not a valid type");
+         throw("not a valid type");
       }
    }
 
@@ -265,10 +265,10 @@ namespace ariel {
       is >> tempVal >> tmp >> s;
       s.resize(s.length() - 1); 
       try{
-         
+                  
          Unit newType = StringToType(s); // Convert the string into type
           
-          a.type = newType;
+         a.type = newType;
          a.value=tempVal;
 
       }
@@ -276,6 +276,7 @@ namespace ariel {
          
          is.setstate(ios::failbit);
       }
+     
        return is;
    }
 
