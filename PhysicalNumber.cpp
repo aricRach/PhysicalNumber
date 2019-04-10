@@ -263,7 +263,7 @@ namespace ariel {
       char tmp; // Recieve "["
       string s = ""; // Recieve the rest of the input after the number (Unit"]")
       is >> tempVal >> tmp >> s;
-      s.resize(s.length() - 1); 
+      if(s.length()>0) s.resize(s.length() - 1);
       try{
                   
          Unit newType = StringToType(s); // Convert the string into type
