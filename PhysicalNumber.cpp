@@ -255,21 +255,45 @@ namespace ariel {
 
    istream & operator>>(istream & is, PhysicalNumber & a) { // Cin
       
-      
+      // make PhysicalNumber c
+      // check if the input is valid
+      // if valid put the value on a 
+      //else error
+      PhysicalNumber c;
       char tmp; // Recieve "["
       string s = ""; // Recieve the rest of the input after the number (Unit"]")
-      is >> a.value >> tmp >> s;
+      is >> c.value >> tmp >> s;
       s.resize(s.length() - 1); 
       Unit newType = StringToType(s); // Convert the string into type
-      a.type = newType;
-      //aric
+       c.type = newType;
       int valid=returnUnit(a,a);
       if(valid==-1){
+          // rewind on error
+        auto errorState = input.rdstate(); // remember error state
+        input.clear(); // clear error so seekg will work
+        input.seekg(startPosition); // rewind
+        input.clear(errorState); // set back the error flag
+         //throw("invalid");
+      }else{
          
-         throw("invalid");
+         a=c;
       }
-      
       return is;
+
+      // char tmp; // Recieve "["
+      // string s = ""; // Recieve the rest of the input after the number (Unit"]")
+      // is >> a.value >> tmp >> s;
+      // s.resize(s.length() - 1); 
+      // Unit newType = StringToType(s); // Convert the string into type
+      // a.type = newType;
+      // //aric
+      // int valid=returnUnit(a,a);
+      // if(valid==-1){
+         
+      //    throw("invalid");
+      // }
+      
+      // return is;
    }
 
    std::string getType(int typeNum) { // Recieve type as a number and return it as a string
