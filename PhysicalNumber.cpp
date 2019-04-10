@@ -7,16 +7,14 @@ using namespace std;
 
 namespace ariel {
 
-   std::string getType(int typeNum); // declaration
-   
-    // Constructor //
+   std::string getType(int typeNum);    // declaration
+
+   // Constructor //
     PhysicalNumber::PhysicalNumber(double value, Unit type) {
-      
+
       this->value = value;
       this->type = type;
-   } 
-   
-   int returnUnit(const PhysicalNumber & a, const PhysicalNumber & b) {
+   } int returnUnit(const PhysicalNumber & a, const PhysicalNumber & b) {
 
       int typeA = (int) (a.type);
       int typeB = (int) (b.type);
@@ -39,12 +37,12 @@ namespace ariel {
    }
 
    void throwCheck(const PhysicalNumber & a, const PhysicalNumber & b) {
-      
+
       if (returnUnit(a, b) == -1)
          throw(" Two differentche of Unit types ");
    }
 
-   Unit StringToType(string str) { // Return type of str
+   Unit StringToType(string str) {      // Return type of str
 
       if (str == "km")
          return Unit::KM;
@@ -69,7 +67,7 @@ namespace ariel {
       }
    }
 
-   double converterToMin(const PhysicalNumber & a) { // Convert to the lowest type of value
+   double converterToMin(const PhysicalNumber & a) {    // Convert to the lowest type of value
 
       double val = a.value;
       Unit t = a.type;
@@ -98,7 +96,7 @@ namespace ariel {
       }
    }
 
-   double convertToA(const PhysicalNumber & a, double val) { // Convert the value to type a
+   double convertToA(const PhysicalNumber & a, double val) {    // Convert the value to type a
 
       Unit t = a.type;
 
@@ -126,7 +124,8 @@ namespace ariel {
       }
    }
 
-   PhysicalNumber operator+(const PhysicalNumber & a, const PhysicalNumber & b) {
+   PhysicalNumber operator+(const PhysicalNumber & a,
+                            const PhysicalNumber & b) {
 
       throwCheck(a, b);
       double sum = converterToMin(a) + converterToMin(b);
@@ -137,26 +136,28 @@ namespace ariel {
    }
 
    PhysicalNumber operator+(const PhysicalNumber & a) { // unary
-      
+
       return PhysicalNumber(a.value, a.type);
       //return a;
    }
 
-   PhysicalNumber & operator+=(PhysicalNumber & a, const PhysicalNumber & b) {
+   PhysicalNumber & operator+=(PhysicalNumber & a,
+                               const PhysicalNumber & b) {
       // throwCheck(a,b);
       // double sum=converterToMin(a)+converterToMin(b);
       // sum=convertToA(a,sum);
       // a.value=sum;
       // return a;
 
-      a = a + b; // doing throwCheck in operator +
+      a = a + b;                // doing throwCheck in operator +
       return a;
    }
 
-   PhysicalNumber operator-(const PhysicalNumber & a, const PhysicalNumber & b) {
+   PhysicalNumber operator-(const PhysicalNumber & a,
+                            const PhysicalNumber & b) {
 
       throwCheck(a, b);
-      double sum = converterToMin(a) - converterToMin(b); // maybe check if sum is lower than 0
+      double sum = converterToMin(a) - converterToMin(b);       // maybe check if sum is lower than 0
       sum = convertToA(a, sum);
       //if(sum<0) throw (" the val is minus");
       Unit type = a.type;
@@ -165,12 +166,13 @@ namespace ariel {
    }
 
    PhysicalNumber operator-(const PhysicalNumber & a) { // unary
-      
+
       double minusVal = -(a.value);
       return PhysicalNumber(minusVal, a.type);
    }
 
-   PhysicalNumber & operator-=(PhysicalNumber & a, const PhysicalNumber & b) {
+   PhysicalNumber & operator-=(PhysicalNumber & a,
+                               const PhysicalNumber & b) {
       // throwCheck(a,b);
       // double sum=converterToMin(a)-converterToMin(b); // maybe check if sum is lower than 0
       // sum=convertToA(a,sum);
@@ -182,52 +184,52 @@ namespace ariel {
       return a;
    }
 
-   PhysicalNumber & operator++(PhysicalNumber & a) { // prefix (++a)
-     
+   PhysicalNumber & operator++(PhysicalNumber & a) {    // prefix (++a)
+
       a.value++;
       return a;
    }
 
    PhysicalNumber operator++(PhysicalNumber & a, int) { // postfix (a++)
-      
+
       PhysicalNumber beforChange(a.value, a.type);
       a.value++;
       return beforChange;
    }
 
-   PhysicalNumber & operator--(PhysicalNumber & a) { // prefix (--a)
-      
+   PhysicalNumber & operator--(PhysicalNumber & a) {    // prefix (--a)
+
       a.value--;
       return a;
    }
 
    PhysicalNumber operator--(PhysicalNumber & a, int) { // postfix (a--)
-      
+
       PhysicalNumber beforChange(a.value, a.type);
       a.value--;
       return beforChange;
    }
 
    bool operator<(const PhysicalNumber & a, const PhysicalNumber & b) { // a<b
-      
+
       throwCheck(a, b);
       return (converterToMin(a) < converterToMin(b));
    }
 
    bool operator>(const PhysicalNumber & a, const PhysicalNumber & b) { // a>b
-      
+
       throwCheck(a, b);
       return (converterToMin(a) > converterToMin(b));
    }
 
-   bool operator<=(const PhysicalNumber & a, const PhysicalNumber & b) { // a<=b
-      
+   bool operator<=(const PhysicalNumber & a, const PhysicalNumber & b) {        // a<=b
+
       throwCheck(a, b);
       return (converterToMin(a) <= converterToMin(b));
    }
 
-   bool operator>=(const PhysicalNumber & a, const PhysicalNumber & b) { // a>=b
-      
+   bool operator>=(const PhysicalNumber & a, const PhysicalNumber & b) {        // a>=b
+
       throwCheck(a, b);
       return (converterToMin(a) >= converterToMin(b));
    }
@@ -236,55 +238,51 @@ namespace ariel {
     return true;
 }*/
 
-   bool operator==(const PhysicalNumber & a, const PhysicalNumber & b) { // a==b
-      
+   bool operator==(const PhysicalNumber & a, const PhysicalNumber & b) {        // a==b
+
       throwCheck(a, b);
       return (converterToMin(a) == converterToMin(b));
    }
-   
-    bool operator!=(const PhysicalNumber & a, const PhysicalNumber & b) { // a!=b
-      
+
+   bool operator!=(const PhysicalNumber & a, const PhysicalNumber & b) {        // a!=b
+
       throwCheck(a, b);
       return (converterToMin(a) != converterToMin(b));
    }
 
-   ostream & operator<<(ostream & os, const PhysicalNumber & a) { // Cout
-      
+   ostream & operator<<(ostream & os, const PhysicalNumber & a) {       // Cout
+
       return os << a.value << getType((int) a.type);
    }
 
-   istream & operator>>(istream & is, PhysicalNumber & a) { // Cin
-      
-      // make PhysicalNumber c
-      // check if the input is valid
-      // if valid put the value on a 
-      //else error
+   istream & operator>>(istream & is, PhysicalNumber & a) {     // Cin
+
       double tempVal;
-      char tmp; // Recieve "["
-      string s = ""; // Recieve the rest of the input after the number (Unit"]")
+      char tmp;                 // Recieve "["
+      string s = "";            // Recieve the rest of the input after the number (Unit"]")
       is >> tempVal >> tmp >> s;
-      if(s.length()>0) s.resize(s.length() - 1);
-      
-      try{
-                  
-         Unit newType = StringToType(s); // Convert the string into type
-          
+      if (s.length() > 0)
+         s.resize(s.length() - 1);
+
+      try {
+
+         Unit newType = StringToType(s);        // Convert the string into type
+
          a.type = newType;
-         a.value=tempVal;
+         a.value = tempVal;
 
 
       }
-      catch(...){
-      
-          cout<<"gfg";
+      catch( ...) {
+
          is.setstate(ios::failbit);
-         
+
       }
-     
-       return is;
+
+      return is;
    }
 
-   std::string getType(int typeNum) { // Recieve type as a number and return it as a string
+   std::string getType(int typeNum) {   // Recieve type as a number and return it as a string
 
       switch (typeNum) {
       case 0:
