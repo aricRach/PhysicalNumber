@@ -264,6 +264,7 @@ namespace ariel {
       string s = ""; // Recieve the rest of the input after the number (Unit"]")
       is >> tempVal >> tmp >> s;
       if(s.length()>0) s.resize(s.length() - 1);
+      
       try{
                   
          Unit newType = StringToType(s); // Convert the string into type
@@ -271,10 +272,13 @@ namespace ariel {
          a.type = newType;
          a.value=tempVal;
 
+
       }
-      catch(const exception& e){
-         
+      catch(...){
+      
+          cout<<"gfg";
          is.setstate(ios::failbit);
+         
       }
      
        return is;
