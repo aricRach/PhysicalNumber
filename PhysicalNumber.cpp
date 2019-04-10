@@ -166,7 +166,7 @@ namespace ariel {
 
    PhysicalNumber operator-(const PhysicalNumber & a) { // unary
       
-      int minusVal = -(a.value);
+      double minusVal = -(a.value);
       return PhysicalNumber(minusVal, a.type);
    }
 
