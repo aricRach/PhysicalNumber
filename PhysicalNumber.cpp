@@ -263,7 +263,7 @@ namespace ariel {
       Unit newType = StringToType(s); // Convert the string into type
       a.type = newType;
       //aric
-      int valid=returnUnit(a);
+      int valid=returnUnit(a,a);
       if(valid==-1){
          
          throw("invalid");
