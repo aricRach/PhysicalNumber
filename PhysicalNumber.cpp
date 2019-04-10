@@ -131,25 +131,18 @@ namespace ariel {
       double sum = converterToMin(a) + converterToMin(b);
       sum = convertToA(a, sum);
       Unit type = a.type;
-      PhysicalNumber afterSum(sum, type);
-      return afterSum;
+      return PhysicalNumber(sum, type);
    }
 
    PhysicalNumber operator+(const PhysicalNumber & a) { // unary
 
       return PhysicalNumber(a.value, a.type);
-      //return a;
    }
 
    PhysicalNumber & operator+=(PhysicalNumber & a,
                                const PhysicalNumber & b) {
-      // throwCheck(a,b);
-      // double sum=converterToMin(a)+converterToMin(b);
-      // sum=convertToA(a,sum);
-      // a.value=sum;
-      // return a;
 
-      a = a + b;                // doing throwCheck in operator +
+      a = a + b;
       return a;
    }
 
@@ -157,12 +150,10 @@ namespace ariel {
                             const PhysicalNumber & b) {
 
       throwCheck(a, b);
-      double sum = converterToMin(a) - converterToMin(b);       // maybe check if sum is lower than 0
+      double sum = converterToMin(a) - converterToMin(b);
       sum = convertToA(a, sum);
-      //if(sum<0) throw (" the val is minus");
       Unit type = a.type;
-      PhysicalNumber afterMinus(sum, type);
-      return afterMinus;
+      return PhysicalNumber(sum, type);
    }
 
    PhysicalNumber operator-(const PhysicalNumber & a) { // unary
@@ -173,12 +164,6 @@ namespace ariel {
 
    PhysicalNumber & operator-=(PhysicalNumber & a,
                                const PhysicalNumber & b) {
-      // throwCheck(a,b);
-      // double sum=converterToMin(a)-converterToMin(b); // maybe check if sum is lower than 0
-      // sum=convertToA(a,sum);
-      // //if(sum<0) throw (" the val is minus");
-      // a.value=sum;
-      // return a;
 
       a = a - b;
       return a;
@@ -234,10 +219,6 @@ namespace ariel {
       return (converterToMin(a) >= converterToMin(b));
    }
 
-/*bool operator=(PhysicalNumber& a,const PhysicalNumber& b){ // a=b
-    return true;
-}*/
-
    bool operator==(const PhysicalNumber & a, const PhysicalNumber & b) {        // a==b
 
       throwCheck(a, b);
@@ -266,19 +247,14 @@ namespace ariel {
 
       try {
 
-         Unit newType = StringToType(s);        // Convert the string into type
-
+         Unit newType = StringToType(s);        // Convert the string into type if s is not a type throw exception
          a.type = newType;
          a.value = tempVal;
-
-
       }
       catch( ...) {
 
          is.setstate(ios::failbit);
-
       }
-
       return is;
    }
 
