@@ -276,10 +276,11 @@ namespace ariel {
          
          is.setstate(ios::failbit);
           // rewind on error
-        auto errorState = input.rdstate(); // remember error state
-        input.clear(); // clear error so seekg will work
-        input.seekg(startPosition); // rewind
-        input.clear(errorState); // set back the error flag
+          ios::pos_type startPosition = is.tellg();
+        auto errorState = is.rdstate(); // remember error state
+        is.clear(); // clear error so seekg will work
+        is.seekg(startPosition); // rewind
+        is.clear(errorState); // set back the error flag
       }
       
      
