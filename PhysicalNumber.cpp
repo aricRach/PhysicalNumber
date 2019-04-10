@@ -65,7 +65,7 @@ namespace ariel {
       else if (str == "g")
          return Unit::G;
       else {
-         throw("not a valid type");
+        // throw("not a valid type");
       }
    }
 
